@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Atividade 4</title>
+    <style>
+        .anuncio {
+            text-align: center;
+            width: 300px;
+        }
+        p {
+            font-size: 25px;
+            color: blue;
+            text-align: center;
+        }
+        /* img {
+            width: 200px;
+            height: 300px;
+        } */
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Ranking extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    celulares: [
+                        {nome:"Samsung Galaxy S21", preco:"R$5.399,00", imagem:"./imagens/samsungs21.jpg"},
+                    ]
+                }                
+            }
+            render() {
+                return (
+                    <div className="anuncio">
+                        {this.state.celulares.map(celular=><img src={celular.imagem}/>)}
+                        {this.state.celulares.map(celular=><h2>{celular.nome}</h2>)}
+                        {this.state.celulares.map(celular=><p>{celular.preco}</p>)}
+                    </div>
+                );
+            } 
+        }
+        ReactDOM.render(<Ranking/>, document.getElementById("root"));
+    </script>
+</body>
+</html>

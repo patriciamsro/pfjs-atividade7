@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Atividade 5</title>
+    <style>
+        .anuncio {
+            text-align: center;
+            width: 300px;
+        }
+        p {
+            font-size: 25px;
+            color: blue;
+            text-align: center;
+        }
+        /*img {
+            width: 200px;
+            height: 300px;
+        }*/
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Ranking extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    celulares: [
+                        {nome:"Samsung Galaxy S21", preco:"R$5.399,00", imagem:"./imagens/samsungs21.jpg"},
+                        {nome:"Samsung Galaxy S22+", preco:"R$6.299,10", imagem:"./imagens/samsungs22+.jpg"},
+                        {nome:"Samsung Galaxy S22 Ultra", preco:"R$9.449,10", imagem:"./imagens/samsungs22ultra.jpg"}
+                    ],
+                    posicao: 0
+                }                
+            }
+            render() {
+                return (
+                    <div className="anuncio">
+                        <img src={this.state.celulares[this.state.posicao].imagem}/>
+                        <h2>{this.state.celulares[this.state.posicao].nome}</h2>
+                        <p>{this.state.celulares[this.state.posicao].preco}</p>
+                    </div>
+                );
+            }
+            componentDidMount() {
+                this.timeID = setInterval(() => this.alterarPosicao(), 1000);
+            }
+            alterarPosicao() {
+                var posicaoAtual = this.state.posicao;
+                var posicaoMaxima = this.state.celulares.length - 1;
+
+                posicaoAtual++;
+                if(posicaoAtual > posicaoMaxima) posicaoAtual = 0;
+
+                /* if(posicaoAtual < posicaoMaxima) posicaoAtual++;
+                else posicaoAtual = 0;*/
+
+                this.setState({posicao:posicaoAtual});
+            }
+        }
+        ReactDOM.render(<Ranking/>, document.getElementById("root"));
+    </script>
+</body>
+</html>
